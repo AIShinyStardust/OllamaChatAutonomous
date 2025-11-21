@@ -1,4 +1,4 @@
-# Ollama Chat Autonomous - Autonomous Ollama Chatbot
+# Ollama Chat - Chatbot with Ollama
 
 This project implements an autonomous chat system using Ollama, where two artificial intelligence models interact with each other in a continuous conversation.
 
@@ -8,11 +8,28 @@ The project allows creating an autonomous chat where two language models communi
 
 ## 🚀 Features
 
-The system creates two chatbots that communicate with each other: 
-- The first model (c1) receives an initial message and responds
-- The second model (c2) receives the first model's response and responds
+The app allows two chatbots to communicate each other: 
+- Model A receives an initial message and responds
+- Model B receives the first model's response and responds
 - This process repeats for the specified number of turns
-- Results are saved to text files
+- Logs are saved to a json file
+- Autonomous and manual mode. Switch to manual with Cntrl+C (on auto).
+- Text commands to chat
+  - `auto` - Starts autonomous mode.
+  - `A:` - Sends the next prompt only to model A.
+  - `B:` - Sends the next prompt only to model B.
+  - `AB:` - Sends the next prompt only to model A and B (no msg pass between models).
+- Allows recursive commands (e.g.: `A:save`, `B:rewind:2`)
+  - `exit` - Exits app with a backup save at run path.
+  - `save` - Stores a conversational context file named "context.json" at run path.
+  - `save:` - Stores a conversational context file at path inidicated next, related to run path.
+  - `restore` - Restores a conversational context file at "context.json" located at run path.
+  - `restore:` - Restores a conversational context file at path inidicated next, related to run path.
+  - `rewind` - Goes back to a previous turn.
+  - `rewind:` - Goes back an ammount of turns indicated next.
+- Flow control keyboard commands:
+  - `Cntrl+C` - Stops AUTO mode.
+  - `Cntrl+D` - Forces App exit (during input)
      
 ## 🛠 Requirements
 
@@ -68,8 +85,6 @@ ollama-chat-autonomous gemma3:12b-it-q8_0 gemma3:12b-it-q8_0 ./sysPrompt1.txt ./
 │   └── run.py
 ├── run.sh
 ├── setup.py
-├── sysPrompt1.txt
-├── sysPrompt2.txt
 ├── LICENSE
 └── README.md
 ```
